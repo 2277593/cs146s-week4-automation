@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>現代軟體開發入門</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>現代軟體開發入門</h1>
+
+      <section>
+        <h2>筆記</h2>
+        <form id="note-form">
+          <input id="note-title" placeholder="標題" required />
+          <input id="note-content" placeholder="內容" required />
+          <button type="submit">新增</button>
+        </form>
+        <ul id="notes"></ul>
+      </section>
+
+      <section>
+        <h2>待辦事項</h2>
+        <form id="action-form">
+          <input id="action-desc" placeholder="描述" required />
+          <button type="submit">新增</button>
+        </form>
+        <ul id="actions"></ul>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
