@@ -16,8 +16,8 @@
 
 ## 4) 改善抽取邏輯
 [x] 擴充 `backend/app/services/extract.py`，解析像 `#tag` 這類標籤並回傳
-[ ] 為新的解析行為補上測試
-[ ] （選做）提供 `POST /notes/{id}/extract`，將筆記轉成 action items
+[x] 為新的解析行為補上測試
+[x] （選做）提供 `POST /notes/{id}/extract`，將筆記轉成 action items
 
 ## 5) 增強 Notes CRUD
 [ ] 新增 `PUT /notes/{id}` 來編輯筆記（標題/內容）

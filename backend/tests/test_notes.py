@@ -49,3 +49,23 @@ def test_search_empty_query_returns_all(client):
     r = client.get("/notes/search/", params={"q": ""})
     assert r.status_code == 200
     assert len(r.json()) >= 2
+
+
+def test_extract_note_creates_action_items(client):
+    r = client.post(
+        "/notes/",
+        json={"title": "Sprint", "content": "TODO: write docs\nShip it!\nJust a note"},
+    )
+    note_id = r.json()["id"]
+    r = client.post(f"/notes/{note_id}/extract")
+    assert r.status_code == 201
+    items = r.json()
+    descriptions = [i["description"] for i in items]
+    assert "TODO: write docs" in descriptions
+    assert "Ship it!" in descriptions
+    assert len(items) == 2
+
+
+def test_extract_note_404(client):
+    r = client.post("/notes/99999/extract")
+    assert r.status_code == 404
