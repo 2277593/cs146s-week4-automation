@@ -20,9 +20,9 @@
 [x] （選做）提供 `POST /notes/{id}/extract`，將筆記轉成 action items
 
 ## 5) 增強 Notes CRUD
-[ ] 新增 `PUT /notes/{id}` 來編輯筆記（標題/內容）
-[ ] 新增 `DELETE /notes/{id}` 來刪除筆記
-[ ] 更新 `frontend/app.js` 以支援編輯/刪除，並補上測試
+[x] 新增 `PUT /notes/{id}` 來編輯筆記（標題/內容）
+[x] 新增 `DELETE /notes/{id}` 來刪除筆記
+[x] 更新 `frontend/app.js` 以支援編輯/刪除，並補上測試
 
 ## 6) 請求驗證與錯誤處理
 [ ] 在 `schemas.py` 加入基本驗證規則（例如最小長度）
