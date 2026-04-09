@@ -98,3 +98,19 @@ def test_delete_note(client):
 def test_delete_note_404(client):
     r = client.delete("/notes/99999")
     assert r.status_code == 404
+
+
+def test_create_note_empty_title_returns_422(client):
+    r = client.post("/notes/", json={"title": "", "content": "Some content"})
+    assert r.status_code == 422
+
+
+def test_create_note_empty_content_returns_422(client):
+    r = client.post("/notes/", json={"title": "Title", "content": ""})
+    assert r.status_code == 422
+
+
+def test_get_note_404_message(client):
+    r = client.get("/notes/99999")
+    assert r.status_code == 404
+    assert "not found" in r.json()["detail"].lower()
