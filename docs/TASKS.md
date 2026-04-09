@@ -1,21 +1,21 @@
 # Tasks
 
 ## 1) 啟用 pre-commit 並修正倉庫問題
-[ ] 安裝 hooks：`pre-commit install`
-[ ] 執行：`pre-commit run --all-files`
-[ ] 修正所有格式化/lint 問題（black/ruff）
+[x] 安裝 hooks：`pre-commit install`
+[x] 執行：`pre-commit run --all-files`
+[x] 修正所有格式化/lint 問題（black/ruff）
 
 ## 2) 新增筆記搜尋 API
-[ ] 以 SQLAlchemy filter 新增/擴充 `GET /notes/search?q=...`（不區分大小寫）
-[ ] 更新 `frontend/app.js` 以使用搜尋條件
-[ ] 在 `backend/tests/test_notes.py` 增加測試
+[x] 以 SQLAlchemy filter 新增/擴充 `GET /notes/search?q=...`（不區分大小寫）
+[x] 更新 `frontend/app.js` 以使用搜尋條件
+[x] 在 `backend/tests/test_notes.py` 增加測試
 
 ## 3) 完成 Action Item 流程
-[ ] 實作 `PUT /action-items/{id}/complete`（已先建立雛形）
-[ ] 更新 UI 顯示完成狀態（已串接）並擴充測試範圍
+[x] 實作 `PUT /action-items/{id}/complete`（已先建立雛形）
+[x] 更新 UI 顯示完成狀態（已串接）並擴充測試範圍
 
 ## 4) 改善抽取邏輯
-[ ] 擴充 `backend/app/services/extract.py`，解析像 `#tag` 這類標籤並回傳
+[x] 擴充 `backend/app/services/extract.py`，解析像 `#tag` 這類標籤並回傳
 [ ] 為新的解析行為補上測試
 [ ] （選做）提供 `POST /notes/{id}/extract`，將筆記轉成 action items
 

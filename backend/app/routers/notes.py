@@ -27,12 +27,18 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)) -> NoteRead:
 
 
 @router.get("/search/", response_model=list[NoteRead])
-def search_notes(q: Optional[str] = None, db: Session = Depends(get_db)) -> list[NoteRead]:
+def search_notes(
+    q: Optional[str] = None, db: Session = Depends(get_db)
+) -> list[NoteRead]:
     if not q:
         rows = db.execute(select(Note)).scalars().all()
     else:
         rows = (
-            db.execute(select(Note).where((Note.title.contains(q)) | (Note.content.contains(q))))
+            db.execute(
+                select(Note).where(
+                    (Note.title.ilike(f"%{q}%")) | (Note.content.ilike(f"%{q}%"))
+                )
+            )
             .scalars()
             .all()
         )

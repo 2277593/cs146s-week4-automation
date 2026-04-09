@@ -17,3 +17,35 @@ def test_create_and_list_notes(client):
     assert r.status_code == 200
     items = r.json()
     assert len(items) >= 1
+
+
+def test_search_case_insensitive(client):
+    client.post(
+        "/notes/", json={"title": "Meeting Notes", "content": "Discuss roadmap"}
+    )
+    r = client.get("/notes/search/", params={"q": "meeting"})
+    assert r.status_code == 200
+    titles = [n["title"] for n in r.json()]
+    assert "Meeting Notes" in titles
+
+
+def test_search_matches_content(client):
+    client.post("/notes/", json={"title": "Standup", "content": "Deploy to production"})
+    r = client.get("/notes/search/", params={"q": "PRODUCTION"})
+    assert r.status_code == 200
+    assert any("Standup" == n["title"] for n in r.json())
+
+
+def test_search_no_results(client):
+    client.post("/notes/", json={"title": "Alpha", "content": "Beta"})
+    r = client.get("/notes/search/", params={"q": "zzznomatch"})
+    assert r.status_code == 200
+    assert r.json() == []
+
+
+def test_search_empty_query_returns_all(client):
+    client.post("/notes/", json={"title": "One", "content": "first"})
+    client.post("/notes/", json={"title": "Two", "content": "second"})
+    r = client.get("/notes/search/", params={"q": ""})
+    assert r.status_code == 200
+    assert len(r.json()) >= 2

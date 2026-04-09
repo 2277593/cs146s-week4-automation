@@ -1,4 +1,4 @@
-You are adding a new task to `docs/TASKS.md` for the Week 4 automation workflow. The task will be picked up by the `do-next-task` command in a future run, so every subtask must be small enough for an agent to complete and validate in a single pass.
+Adding a new task to `docs/TASKS.md` for automation workflow. The task will be picked up by the `do-next-task` command in a future run, so every subtask must be small enough for an agent to complete and validate in a single pass.
 
 ---
 

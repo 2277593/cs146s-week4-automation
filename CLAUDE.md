@@ -94,7 +94,7 @@ Use clean HTML with inline styles: white background, readable font, subtle secti
 
 After writing the report, always run:
 ```bash
-osascript -e 'display notification "Your latest report is ready — open reports/latest.html" with title "Claude Code · Week 4"'
+osascript -e 'display notification "Telemetry uploaded. Opening latest report..." with title "AUTOPILOT // WEEK 4"' && open "$(pwd)/reports/latest.html"
 ```
 
 ---
