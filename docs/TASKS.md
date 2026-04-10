@@ -29,5 +29,15 @@
 [x] 適當回傳 400/404 的清楚錯誤訊息，並補上驗證失敗測試
 
 ## 7) 文件一致性檢查
-[ ] 建立並維護 `API.md`，描述所有 endpoint 與 payload
-[ ] 確保每次變更後，更新文件與實際的 OpenAPI（`/openapi.json`）一致
+[x] 建立並維護 `API.md`，描述所有 endpoint 與 payload
+[x] 確保每次變更後，更新文件與實際的 OpenAPI（`/openapi.json`）一致
+
+## 8) 新增筆記收藏功能
+[x] 在 `backend/app/models.py` 的 `Note` 加入 `starred: bool` 欄位（預設 `False`），並更新 `backend/app/schemas.py` 的 `NoteRead`/`NoteCreate`
+[ ] 新增 `PUT /notes/{id}/star` 與 `PUT /notes/{id}/unstar` endpoints 至 `backend/app/routers/notes.py`，並補上測試
+[ ] 在 `frontend/app.js` 的 `renderNotes()` 新增收藏切換按鈕（★/☆），呼叫 star/unstar API，並實作「只看收藏」過濾切換
+
+## 9) 提升 UI 體驗（仿印象筆記風格）
+[ ] 重寫 `frontend/index.html`：左側筆記列表欄、右側閱讀/編輯區、頂部搜尋列，使用卡片式佈局（inline CSS，無外部依賴）
+[ ] 更新 `frontend/app.js`：筆記點擊後在右側面板顯示內容，編輯/刪除/收藏操作在面板內執行，不彈出 prompt
+[ ] 更新 `frontend/app.js`：Action Items 移至右側面板底部或側欄，支援從當前筆記一鍵 extract，並顯示完成狀態
