@@ -79,6 +79,28 @@ def delete_note(note_id: int, db: Session = Depends(get_db)) -> None:
     db.flush()
 
 
+@router.put("/{note_id}/star", response_model=NoteRead)
+def star_note(note_id: int, db: Session = Depends(get_db)) -> NoteRead:
+    note = db.get(Note, note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    note.starred = True
+    db.flush()
+    db.refresh(note)
+    return NoteRead.model_validate(note)
+
+
+@router.put("/{note_id}/unstar", response_model=NoteRead)
+def unstar_note(note_id: int, db: Session = Depends(get_db)) -> NoteRead:
+    note = db.get(Note, note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    note.starred = False
+    db.flush()
+    db.refresh(note)
+    return NoteRead.model_validate(note)
+
+
 @router.post("/{note_id}/extract", response_model=list[ActionItemRead], status_code=201)
 def extract_note(note_id: int, db: Session = Depends(get_db)) -> list[ActionItemRead]:
     note = db.get(Note, note_id)

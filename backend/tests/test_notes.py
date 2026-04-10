@@ -114,3 +114,27 @@ def test_get_note_404_message(client):
     r = client.get("/notes/99999")
     assert r.status_code == 404
     assert "not found" in r.json()["detail"].lower()
+
+
+def test_star_and_unstar_note(client):
+    r = client.post("/notes/", json={"title": "Fav", "content": "Keep this"})
+    note_id = r.json()["id"]
+    assert r.json()["starred"] is False
+
+    r = client.put(f"/notes/{note_id}/star")
+    assert r.status_code == 200
+    assert r.json()["starred"] is True
+
+    r = client.put(f"/notes/{note_id}/unstar")
+    assert r.status_code == 200
+    assert r.json()["starred"] is False
+
+
+def test_star_note_404(client):
+    r = client.put("/notes/99999/star")
+    assert r.status_code == 404
+
+
+def test_unstar_note_404(client):
+    r = client.put("/notes/99999/unstar")
+    assert r.status_code == 404
