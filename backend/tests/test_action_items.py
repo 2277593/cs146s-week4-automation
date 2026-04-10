@@ -37,3 +37,14 @@ def test_completed_status_visible_in_list(client):
     items = client.get("/action-items/").json()
     match = next(i for i in items if i["id"] == item_id)
     assert match["completed"] is True
+
+
+def test_create_action_item_empty_description_returns_422(client):
+    r = client.post("/action-items/", json={"description": ""})
+    assert r.status_code == 422
+
+
+def test_complete_nonexistent_item_404_message(client):
+    r = client.put("/action-items/99999/complete")
+    assert r.status_code == 404
+    assert "not found" in r.json()["detail"].lower()
